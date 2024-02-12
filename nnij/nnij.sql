@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS groups_nnij;
 CREATE TABLE groups_nnij (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(3) UNIQUE NOT NULL
+    name_ VARCHAR(3) UNIQUE NOT NULL
 );
 
 -- Table: students_nnij
