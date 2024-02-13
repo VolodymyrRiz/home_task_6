@@ -10,8 +10,7 @@ NUMBER_TEACHERS = 5
 NUMBER_SUBJECTS = 5
 NUMBER_MARKS = 150
 
-
-def generate_fake_data(number_groups, number_students, number_teachers, number_subjects, number_marks) -> tuple():
+def generate_fake_data(number_groups, number_students, number_teachers, number_subjects, number_marks):
     fake_groups = []  # тут зберігатимемо групи
     fake_students = []  # тут зберігатимемо сстудентів
     fake_teachers = []  # тут зберігатимемо вчителів
@@ -37,18 +36,55 @@ def generate_fake_data(number_groups, number_students, number_teachers, number_s
         fake_subjects.append(fake_data.job())
 
     # Та number_marks набір оцінок
-    
-    
-    
-    for mrk1 in range(number_marks):
+        
+    for _ in range(number_marks):
         mrk = random.randint(60, 100)
         fake_marks.append(mrk)
 
     return fake_groups, fake_students, fake_teachers, fake_subjects, fake_marks
 
-groups_nnij, students_nnij, teachers_nnij, subjects_nnij, marks_nnij = generate_fake_data(NUMBER_GROUPS, NUMBER_STUDENTS, NUMBER_TEACHERS, NUMBER_SUBJECTS, NUMBER_MARKS)
+def prepare_data(groups_nnij, students_nnij, teachers_nnij, subjects_nnij, marks_nnij):
+    for_groups = []
+    # готуємо список кортежів назв груп
+    for name_ in groups_nnij:
+        for_groups.append((name_))
+
+    for_students = []  # для таблиці students_nnij
+    for student in students_nnij:
+       for_students.append((student, randint(1, NUMBER_GROUPS)))
+
+    for_teachers = [] # для таблиці teachers_nnij
+    for teacher in teachers_nnij:
+        for_teachers.append((teacher, randint(1, NUMBER_GROUPS)))
+        
+    for_subjects = [] # для таблиці subjects_nnij     
+    for subject_ in subjects_nnij:
+        for_subjects.append((subject_, randint(1, NUMBER_TEACHERS)))
+        
+    for_marks = [] # для таблиці marks_nnij   
+    ns = 1
+    ns1 = 1
+    nd = 1
+    nd1 = 1
+    for mark in marks_nnij:
+        
+        if ns == NUMBER_SUBJECTS + 1:
+            ns = 1
+            ns1 = ns1 + 1
+        if nd == NUMBER_SUBJECTS + 1:
+            nd = 1
+            nd1 = 1
+        for_marks.append((ns1, nd1, mark))
+        ns += 1
+        nd += 1
+        nd1 += 1
+    
+    return  for_groups, for_students, for_teachers, for_subjects, for_marks
+
+groups_nnij, students_nnij, teachers_nnij, subjects_nnij, marks_nnij = prepare_data(*generate_fake_data(NUMBER_GROUPS, NUMBER_STUDENTS, NUMBER_TEACHERS, NUMBER_SUBJECTS, NUMBER_MARKS))
 print(groups_nnij)
 print(students_nnij)
 print(teachers_nnij)
 print(subjects_nnij)
 print(marks_nnij)
+
