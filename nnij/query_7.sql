@@ -1,5 +1,5 @@
 -- Знайти оцінки студентів у окремій групі з певного предмета.
-SSELECT st.student, sub.subject_, m.mark AS Marks
+SELECT st.student, sub.subject_, m.mark AS Marks
 FROM students_nnij AS st
 JOIN subjects_nnij AS sub ON sub.id=1
 LEFT JOIN marks_nnij AS m ON st.id=m.id

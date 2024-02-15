@@ -1,32 +1,25 @@
 #import create_db
 # import fill_data
-import query_1
-import query_2
-import query_3
-import query_4
-import query_5
-import query_6
-import query_7
-import query_8
-import query_9
-import query_10
+
 import sqlite3
 import os
+from pathlib import Path
 
 
-def create():
-    create_db.run()
-    pass
+# def create():
+#     create_db.run()
+#     pass
 
 
-def fill_data():
-    fill_data.run()
-    pass
+# def fill_data():
+#     fill_data.run()
+#     pass
 
 
 def query(number):
-    with open('query_'+ number +'.sql', 'r') as f:
-        sql = f.read()  
+    file = 'query_' + number + '.sql'
+    with open(file, 'r') as f:
+        sql = f.read()       
     with sqlite3.connect('nnij_new.db') as con:
         cur = con.cursor()
         cur.execute(sql)
@@ -40,19 +33,19 @@ if __name__ == "__main__":
     while True:
         print('Виберіть номер запиту: ')
         print('Знайти 5 студентів із найбільшим середнім балом з усіх предметів - 1 + Enter')
-        print('Знайти 5 студентів із найбільшим середнім балом з усіх предметів - 2 + Enter')
-        print('Знайти 5 студентів із найбільшим середнім балом з усіх предметів - 3 + Enter')
-        print('Знайти 5 студентів із найбільшим середнім балом з усіх предметів - 4 + Enter')
-        print('Знайти 5 студентів із найбільшим середнім балом з усіх предметів - 5 + Enter')
-        print('Знайти 5 студентів із найбільшим середнім балом з усіх предметів - 6 + Enter')
-        print('Знайти 5 студентів із найбільшим середнім балом з усіх предметів - 7 + Enter')
-        print('Знайти 5 студентів із найбільшим середнім балом з усіх предметів - 8 + Enter')
-        print('Знайти 5 студентів із найбільшим середнім балом з усіх предметів - 9 + Enter')
-        print('Знайти 5 студентів із найбільшим середнім балом з усіх предметів - 10 + Enter')
+        print('Знайти студента із найвищим середнім балом з певного предмета - 2 + Enter')
+        print('Знайти середній бал у групах з певного предмета - 3 + Enter')
+        print('Знайти середній бал на потоці (по всій таблиці оцінок) - 4 + Enter')
+        print('Знайти які курси читає певний викладач - 5 + Enter')
+        print('Знайти список студентів у певній групі - 6 + Enter')
+        print('Знайти оцінки студентів у окремій групі з певного предмета - 7 + Enter')
+        print('Знайти середній бал, який ставить певний викладач зі своїх предметів - 8 + Enter')
+        print('Знайти список курсів, які відвідує студент - 9 + Enter')
+        print('Список курсів, які певному студенту читає певний викладач - 10 + Enter')
         print('Припинити запити - 0 + Enter')    
-        input(str(number))        
+        number = str(input())       
         if number == '0':
             os.abort()
-        print(query(str(number)))
+        print(query(number))
         continue
                 
