@@ -46,6 +46,12 @@ if __name__ == "__main__":
         number = str(input())       
         if number == '0':
             os.abort()
+        print('Р Е З У Л Ь Т А Т______________________')
         print(query(number))
+        print('')
+        print('')
+        print('ПРОДОВЖИТИ - Enter')
+        input()
+        print('')
         continue
                 
